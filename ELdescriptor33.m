@@ -41,13 +41,7 @@ for k=1:numPatches
        above=GDdescriptor(:,k)>tr;
        GDdescriptor(:,k)=above*tr+(1-above).*GDdescriptor(:,k);
    end
-    %L2 descriptor normalization
-   nor=sqrt(sum(GDdescriptor(:,k).^2));
-   if nor==0
-      GDdescriptor(:,k)=0;
-   else        
-      GDdescriptor(:,k)=GDdescriptor(:,k)/nor;
-   end
+  
   %L1 descriptor normalization
    nor=sum(GDdescriptor(:,k));
    if nor==0
