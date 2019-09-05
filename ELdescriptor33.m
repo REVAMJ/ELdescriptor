@@ -31,6 +31,7 @@ for i=1:8
     w2{i}=warea2/norM(round(centri2(i,2)),round(centri2(i,1)));
 end
 
+%parfor k=1:numPatches
 for k=1:numPatches
    [GDmaps,Angle] = GDerivMaps(patches{k},GDfilters);
     %compute k-th descriptor
