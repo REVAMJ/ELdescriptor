@@ -43,6 +43,7 @@ for i=1:8
     w2{i}=w2{i}/norM(round(centri2(i,2)),round(centri2(i,1)));
 end
 
+%parfor k=1:numPatches
 for k=1:numPatches
     patch=patches(:,:,:,k);
  %    patch = imfilter(patches(:,:,:,k), wi, 'replicate', 'same','conv');
