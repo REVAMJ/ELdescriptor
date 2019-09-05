@@ -252,37 +252,37 @@ kot(:,:,3)=kot(:,:,3)/2;
 end
 %%
 function [filtri] = getFilters(sigma)
-sze = round(3.*sigma);
+sze = round(3*sigma);
 [x,y] = meshgrid(-sze:sze);
 filtri=[];
 
 %Gaussian filter
 g0 = exp(-(x.^2/sigma^2 + y.^2/sigma^2)/2);
-%nor0=sum(sum(g0));
 g0=g0/sum(sum(g0));
-    
+
 %first derivatives
 g1x=-g0.*x/sigma^2;
 g1y=-g0.*y/sigma^2;
-%ww=sqrt(sum(sum(g1x.*g1x)));
-ww=1;
-filtri{1}=g1x/ww;
-filtri{2}=g1y/ww;
+%ww=sum(sum((g1x).*((g1x)>0)))-sum(sum((g1x).*((g1x)<0)));
+filtri{1}=g1x;
+filtri{2}=g1y;
+%filtri{1}=g1x/ww;
+%filtri{2}=g1y/ww;
 
 %second derivatives
 g2_0=g0.*(-1/sigma^2+x.*x/sigma^4);
-%ww=sqrt(sum(sum(g2_0.*g2_0)));
-ww=1;
-filtri{3}=g2_0/ww;
+%ww=sum(sum(g2_0.*(g2_0>0)))-sum(sum(g2_0.*(g2_0<0)));
+filtri{3}=g2_0;
+%filtri{3}=g2_0/ww;
 
 g2_60=imrotate(g2_0, 60, 'bilinear');
-%ww=sqrt(sum(sum(g2_60.*g2_60)));
-ww=1;
-filtri{4}=g2_60/ww;
+%ww=sum(sum(g2_60.*(g2_60>0)))-sum(sum(g2_60.*(g2_60<0)));
+filtri{4}=g2_60;
+%filtri{4}=g2_60/ww;
 
 g2_120=imrotate(g2_0, 120, 'bilinear');
-%ww=sqrt(sum(sum(g2_120.*g2_120)));
-ww=1;
-filtri{5}=g2_120/ww;
+%ww=sum(sum(g2_120.*(g2_120>0)))-sum(sum(g2_120.*(g2_120<0)));
+filtri{5}=g2_120;
+%filtri{5}=g2_120/ww;
 end
 %%
