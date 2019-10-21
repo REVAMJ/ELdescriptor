@@ -14,9 +14,11 @@ GDfilters = getFilters(sigma);
 sig1=3./2;
 sig2=5./2;
 sig3=8.75/2;
+Tc=3;
 %sig1=3/2;
 %sig2=5.5/2;
 %sig3=9.75/2;
+%Tc=2.6;
 r1=14.5/2;
 r2=31.5/2;
 w0 = createGaussianFilter (sig1); 
@@ -38,7 +40,7 @@ for k=1:numPatches
    GDdescriptor(:,k)= byParts(GDmaps,Angle,w0,warea1,w2,meje1,meje2);
     %cut off high peaks
    for cikel=1:10
-       tr=2.6*mean(GDdescriptor(:,k));
+       tr=Tc*mean(GDdescriptor(:,k));
        above=GDdescriptor(:,k)>tr;
        GDdescriptor(:,k)=above*tr+(1-above).*GDdescriptor(:,k);
    end
