@@ -4,9 +4,11 @@ numPatches=size(patches,2);
 sig1=3.;
 sig2=5.;
 sig3=8.75;
+Tc=3;
 %sig1=3;
 %sig2=5.5;
 %sig3=9.75;
+%Tc=2.6;
 r1=14.5;
 r2=31.5;
 Areas=17;
@@ -45,7 +47,7 @@ for k=1:numPatches
     GDdescriptor(:,k)= byParts(GDmaps,Angle,w0,w1,w2,meje1,meje2);
     %cut off high peaks
     for cikel=1:10     
-        tr=2.6*mean(GDdescriptor(:,k));
+        tr=Tc*mean(GDdescriptor(:,k));
         above=GDdescriptor(:,k)>tr;
         GDdescriptor(:,k)=above.*tr+(1-above).*GDdescriptor(:,k);
     end
